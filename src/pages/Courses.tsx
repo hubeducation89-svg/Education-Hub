@@ -2,11 +2,20 @@ import { COURSES } from "../data";
 import { Link } from "react-router-dom";
 import { CheckCircle, Clock } from "lucide-react";
 import { SEO } from "../components/SEO";
+import { LazyImage } from "../components/LazyImage";
 
 export function Courses() {
   return (
     <div className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen">
-      <SEO title="Courses" />
+      <SEO
+        title="Courses"
+        description="Explore our comprehensive range of programming, digital marketing, and office courses designed to help you succeed in your career."
+        keywords="programming courses, C programming, C++, digital marketing, MS office, computer basics, science courses"
+        ogTitle="Online Courses | Education Hub by Gunjan Gaur"
+        ogDescription="Learn practical skills with our comprehensive online courses"
+        ogUrl="https://education-hub-ivory.vercel.app/courses"
+        canonical="https://education-hub-ivory.vercel.app/courses"
+      />
       <div className="text-center mb-16">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">Our Courses</h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -20,7 +29,12 @@ export function Courses() {
             <div key={course.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col sm:flex-row">
               {course.image && (
                 <div className="sm:w-1/3 bg-gray-100 flex-shrink-0">
-                  <img src={course.image} alt={`${course.title} free video course by Education Hub by GUNJAN GAUR`} className="w-full h-48 sm:h-full object-cover" referrerPolicy="no-referrer" />
+                  <LazyImage
+                    src={course.image}
+                    alt={`${course.title} free video course by Education Hub by GUNJAN GAUR`}
+                    className="w-full h-48 sm:h-full object-cover"
+                    placeholderClassName="w-full h-48 sm:h-full"
+                  />
                 </div>
               )}
               <div className="p-6 flex-1 flex flex-col">
@@ -42,7 +56,7 @@ export function Courses() {
                 )}
                 
                 <div>
-                  <Link to={`/dashboard/course/${course.id}`} className="text-sm font-medium text-indigo-600 hover:text-indigo-700">
+                  <Link to={`/dashboard/course/${course.id}`} className="text-sm font-medium text-indigo-600 hover:text-indigo-700 transition-colors">
                     Start Learning &rarr;
                   </Link>
                 </div>

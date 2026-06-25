@@ -3,11 +3,23 @@ import { CheckCircle, Users, BookOpen, Sparkles, ArrowRight, PlayCircle } from "
 import { COURSES } from "../data";
 import heroImg from "../assets/images/hero_illustration_1781763701194.jpg";
 import { SEO } from "../components/SEO";
+import { LazyImage } from "../components/LazyImage";
 
 export function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO title="Home" />
+      <SEO
+        title="Home"
+        description="Learn programming, digital marketing, and more. Join Education Hub by GUNJAN GAUR for free online courses and training."
+        keywords="free online courses, learn programming, digital marketing, C programming, computer basics"
+        ogTitle="Education Hub by Gunjan Gaur - Free Online Courses"
+        ogDescription="Learn programming, digital marketing, and more with expert guidance"
+        ogImage="https://education-hub-ivory.vercel.app/og-image.jpg"
+        ogUrl="https://education-hub-ivory.vercel.app/"
+        twitterTitle="Education Hub - Free Programming & Skills Courses"
+        twitterDescription="Learn practical skills from industry experts"
+        canonical="https://education-hub-ivory.vercel.app/"
+      />
       {/* Modern Hero Section */}
       <section className="relative overflow-hidden bg-white">
         <div className="absolute inset-0 top-0 w-full h-[600px] bg-gradient-to-br from-[#0f2147] via-[#0f2147] to-[#1a365d] rounded-br-[100px] lg:rounded-br-[200px]" />
@@ -31,24 +43,27 @@ export function Home() {
               </p>
               
               <div className="flex flex-wrap gap-4 pt-4">
-                <Link to="/courses" className="inline-flex justify-center items-center gap-2 px-8 py-4 border border-transparent text-lg font-bold rounded-full text-[#0f2147] bg-[#ffb703] hover:bg-yellow-400 shadow-[0_0_15px_rgba(255,183,3,0.4)] hover:shadow-[0_0_25px_rgba(255,183,3,0.6)] transition-all duration-200 transform hover:-translate-y-1">
+                <Link to="/courses" className="inline-flex justify-center items-center gap-2 px-8 py-4 border border-transparent text-lg font-bold rounded-full text-[#0f2147] bg-[#ffb703] hover:bg-[#ffb703]/90 transition-colors">
                   Explore Courses
                   <ArrowRight className="w-5 h-5" />
                 </Link>
-                <Link to="/about" className="inline-flex justify-center items-center gap-2 px-8 py-4 border-2 border-slate-600/50 text-lg font-bold rounded-full text-white bg-white/5 hover:bg-white/10 backdrop-blur-sm transition-all duration-200 ease-in-out transform hover:-translate-y-1">
+                <Link to="/about" className="inline-flex justify-center items-center gap-2 px-8 py-4 border-2 border-slate-600/50 text-lg font-bold rounded-full text-white bg-white/5 hover:bg-white/10 transition-colors">
                   <PlayCircle className="w-5 h-5 text-gray-300" />
                   Our Story
                 </Link>
               </div>
-              
-
             </div>
             
             {/* Visual/Image Content */}
             <div className="relative hidden lg:block z-10 pl-8">
               <div className="absolute inset-0 bg-[#ffb703] blur-3xl opacity-20 transform scale-110 rounded-full" />
               <div className="relative border-[8px] border-white rounded-[3rem] shadow-2xl overflow-hidden bg-white transform rotate-2 hover:rotate-0 transition-transform duration-500">
-                <img src={heroImg} alt="Education Hub by GUNJAN GAUR - Best Programming and Science Courses Banner" className="w-full h-[450px] object-cover" />
+                <LazyImage
+                  src={heroImg}
+                  alt="Education Hub by GUNJAN GAUR - Best Programming and Science Courses Banner"
+                  className="w-full h-[450px] object-cover"
+                  placeholderClassName="w-full h-[450px]"
+                />
                 
                 {/* Floating Badge */}
                 <div className="absolute top-6 -left-6 bg-[#0f2147] p-4 rounded-xl shadow-xl border border-slate-700 flex items-center gap-4 animate-bounce-slow">
@@ -82,7 +97,7 @@ export function Home() {
               "Beginner Friendly Content",
               "Certificate Courses",
             ].map((feature, i) => (
-              <div key={i} className="flex gap-4 p-6 border-b-4 border-transparent hover:border-[#ffb703] rounded-2xl shadow-sm bg-white hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+              <div key={i} className="flex gap-4 p-6 border-b-4 border-transparent hover:border-[#ffb703] rounded-2xl shadow-sm bg-white hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                 <div className="bg-[#ffb703]/10 p-3 rounded-full h-fit mt-1">
                   <CheckCircle className="w-6 h-6 text-[#ffb703] flex-shrink-0" />
                 </div>
@@ -111,7 +126,12 @@ export function Home() {
               <div key={course.id} className="bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group flex flex-col">
                 <div className="relative overflow-hidden">
                   {course.image && (
-                    <img src={course.image} alt={`${course.title} free video course by Education Hub by GUNJAN GAUR`} className="w-full h-56 object-cover transform group-hover:scale-110 transition-transform duration-500" referrerPolicy="no-referrer" />
+                    <LazyImage
+                      src={course.image}
+                      alt={`${course.title} free video course by Education Hub by GUNJAN GAUR`}
+                      className="w-full h-56 object-cover transform group-hover:scale-110 transition-transform duration-300"
+                      placeholderClassName="w-full h-56"
+                    />
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-[rgba(15,33,71,0.8)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                     <span className="text-[#ffb703] font-bold text-sm tracking-widest uppercase">Explore Module</span>
@@ -120,7 +140,7 @@ export function Home() {
                 <div className="p-8 flex-1 flex flex-col">
                   <h3 className="font-extrabold text-xl text-[#0f2147] mb-3 leading-tight group-hover:text-blue-700 transition-colors">{course.title}</h3>
                   <p className="text-slate-500 text-sm mb-6 line-clamp-2 leading-relaxed flex-1">{course.description}</p>
-                  <a href={course.videoLink || course.modules[0]?.videoLink || "#"} target="_blank" rel="noopener noreferrer" className="text-[#ffb703] font-bold text-sm inline-flex items-center gap-1 hover:gap-2 transition-all mt-auto uppercase tracking-wider">
+                  <a href={course.videoLink || course.modules[0]?.videoLink || "#"} target="_blank" rel="noopener noreferrer" className="text-[#ffb703] font-bold text-sm inline-flex items-center gap-1 hover:gap-2 transition-all">
                     Learn More <ArrowRight className="w-4 h-4" />
                   </a>
                 </div>
@@ -128,7 +148,7 @@ export function Home() {
             ))}
           </div>
           <div className="text-center mt-12 md:hidden">
-            <Link to="/courses" className="inline-flex justify-center items-center gap-2 px-8 py-4 border border-[#0f2147] font-bold rounded-full text-[#0f2147] hover:bg-[#0f2147] hover:text-white transition-colors w-full">
+            <Link to="/courses" className="inline-flex justify-center items-center gap-2 px-8 py-4 border border-[#0f2147] font-bold rounded-full text-[#0f2147] hover:bg-[#0f2147] hover:text-white transition-colors">
               View all courses <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
