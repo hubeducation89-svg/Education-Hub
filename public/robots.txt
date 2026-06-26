@@ -1,32 +1,5 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
-Disallow: /admin
-Disallow: /dashboard/admin
-Disallow: /*.json
-Disallow: /*.cjs
-Disallow: /test
-Disallow: /api/private
 
-# Crawl delay (optional - in seconds)
-Crawl-delay: 1
-
-# Request rate (optional)
-Request-rate: 1/10s
-
-# Sitemaps
 Sitemap: https://education-hub-ivory.vercel.app/sitemap.xml
-
-# Google Bot
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 0
-
-# Bing Bot
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 1
-
-# Other bots
-User-agent: *
-Allow: /
